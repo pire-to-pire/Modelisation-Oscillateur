@@ -93,7 +93,7 @@ R1 = Ressort(0.0006,vectorize(CENTRE,M).norme + 20,CENTRE,M)
 # SETUP 2
 M_init = PM(LARGEUR/2+30,HAUTEUR/2+80,(0,0))
 M = deepcopy(M_init)
-K = 0.00004
+K = 0.00003
 R1 = Ressort(K,vectorize(HAUT,CENTRE).norme - 100,HAUT,M)
 R2 = Ressort(K,vectorize(BAS,CENTRE).norme - 100,BAS,M)
 R3 = Ressort(K,vectorize(DROITE,CENTRE).norme - 100,DROITE,M)
