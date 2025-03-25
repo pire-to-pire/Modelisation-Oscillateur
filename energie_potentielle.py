@@ -33,7 +33,7 @@ plt.show()
 
 # Champ de forces 
 F = np.gradient(Z)
-gradx,grady=np.gradient(Z)
+gradx,grady=F
 gradxnorm=gradx/np.sqrt(gradx**2+grady**2)
 gradynorm=grady/np.sqrt(gradx**2+grady**2)
 gradmag=np.sqrt(gradx**2+grady**2)
@@ -42,5 +42,10 @@ step=5
 plt.pcolor(X, Y, gradmag,cmap='rainbow')
 plt.colorbar()
 
-plt.quiver(X[::step], Y[::step],gradxnorm[::step,::step] , gradynorm[::step,::step],units='xy')
+x2 = np.array([[gradxnorm[i][j] for i in range(len(gradxnorm[0]))] for j in range(len(gradxnorm))])
+y2 = np.array([[gradynorm[i][j] for i in range(len(gradynorm[0]))] for j in range(len(gradynorm))])
+
+
+
+plt.quiver(X[::step], Y[::step],x2[::step,::step] , y2[::step,::step],units='xy')
 plt.show()
