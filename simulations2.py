@@ -30,6 +30,8 @@ class Vecteur:
 class PM(Point):
     def __init__(self, x, y, v0):
         super().__init__(x, y)
+        self.px = x
+        self.py = y
         self.color = (200,100,0)
         self.vitesse = Vecteur(*v0)
         self.acceleration = Vecteur(0,0)
@@ -37,8 +39,12 @@ class PM(Point):
         self.m = 100
 
     def update(self, fenetre):
-        self.x += dt * self.vitesse.x
-        self.y += dt * self.vitesse.y
+        ix = self.x
+        iy = self.y
+        self.x = (self.x + self.px)/2 + 1.5 * dt * self.vitesse.x
+        self.y = (self.y + self.py)/2 + 1.5 * dt * self.vitesse.y
+        self.px = ix
+        self.py = iy
         self.acceleration = Vecteur(0,0)
         for force in self.forces:
             self.acceleration += (1/self.m)*force
@@ -86,6 +92,7 @@ BAS = Point(LARGEUR/2, HAUTEUR - 10)
 DROITE = Point(LARGEUR - 10, HAUTEUR/2)
 GAUCHE = Point(10, HAUTEUR/2)
 
+# M_init = PM(LARGEUR/2+30,HAUTEUR/2+50,(0,0))
 M_init = PM(LARGEUR/2+30,HAUTEUR/2+50,(0.05,-0.05))
 # M_init = PM(LARGEUR/2,HAUTEUR/2,(0.02,0.01))
 M = deepcopy(M_init)
